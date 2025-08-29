@@ -23,21 +23,35 @@ This repository provides comprehensive testing and optimization strategies for A
 
 ## 📊 Performance Results
 
-### Baseline Performance (Default Configuration)
+### AOSP 15 Compilation Test Results (August 27th, 2024)
+
+| Storage Configuration | Filesystem | Build Time | Performance Notes |
+|----------------------|------------|------------|-------------------|
+| **Samsung PM1733 NVMe** (Single) | Default | 27.87 mins | Baseline performance |
+| **GRAID Card 0** (3x Samsung PM1735a) | ext4 | 28.03 mins | ⚠️ ext4 not recommended for high performance |
+| **GRAID Card 1** (8x PM1733 RAID 0) | XFS | **9.53 mins** | 🏆 Best performance - 66% faster than baseline |
+
+> **Key Finding:** RAID 0 with 8x NVMe drives reduces AOSP build time by 66% compared to single NVMe
+
+### I/O Benchmark Results
+
+#### Baseline Performance (Default Configuration)
 
 | Storage | Sequential Read | Sequential Write | Random 4K Read | Random 4K Write |
 |---------|----------------|------------------|----------------|-----------------|
 | PM1733 NVMe | TBD | TBD | TBD | TBD |
-| GRAID Config | TBD | TBD | TBD | TBD |
-| RAID Array | TBD | TBD | TBD | TBD |
+| GRAID Card 0 (ext4) | TBD | TBD | TBD | TBD |
+| GRAID Card 1 (XFS) | TBD | TBD | TBD | TBD |
 
-### Optimized Performance (With noatime + Custom Tuning)
+#### Optimized Performance (With noatime + XFS)
 
 | Storage | Sequential Read | Sequential Write | Random 4K Read | Random 4K Write | Build Time Impact |
 |---------|----------------|------------------|----------------|-----------------|-------------------|
 | PM1733 NVMe | TBD | TBD | TBD | TBD | TBD |
-| GRAID Config | TBD | TBD | TBD | TBD | TBD |
-| RAID Array | 3,858 MB/s | 2,402 MB/s | 107 MB/s | 1,829 MB/s | -35% |
+| GRAID Card 0 (XFS) | TBD | TBD | TBD | TBD | TBD |
+| GRAID Card 1 (XFS) | 3,858 MB/s | 2,402 MB/s | 107 MB/s | 1,829 MB/s | -66% |
+
+> **Update (August 29th):** Applied noatime to all drives and converted GRAID Card 0 from ext4 to XFS. Results pending...
 
 ## 🛠️ Quick Start
 
