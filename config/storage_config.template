@@ -1,0 +1,44 @@
+# AOSP Storage Configuration Template
+# Copy this file and modify for your specific hardware setup
+
+# NVMe Configuration
+NVME_DEVICE=/dev/nvme0n1
+NVME_MOUNT=/mnt/nvme_test
+NVME_FSTYPE=xfs
+NVME_MOUNT_OPTS="noatime,nodiratime,discard"
+
+# GRAID Card 0 Configuration
+GRAID0_DEVICE=/dev/graid0
+GRAID0_MOUNT=/mnt/graid0_test
+GRAID0_FSTYPE=xfs
+GRAID0_MOUNT_OPTS="noatime,nodiratime"
+GRAID0_RAID_LEVEL=0
+GRAID0_DRIVES=("nvme1n1" "nvme2n1" "nvme3n1")
+
+# GRAID Card 1 Configuration  
+GRAID1_DEVICE=/dev/graid1
+GRAID1_MOUNT=/mnt/graid1_test
+GRAID1_FSTYPE=xfs
+GRAID1_MOUNT_OPTS="noatime,nodiratime"
+GRAID1_RAID_LEVEL=0
+GRAID1_DRIVES=("nvme4n1" "nvme5n1" "nvme6n1" "nvme7n1" "nvme8n1" "nvme9n1" "nvme10n1" "nvme11n1")
+
+# AOSP Build Paths
+AOSP_SOURCE_PATH=/mnt/graid1_test/aosp
+AOSP_OUT_PATH=/mnt/nvme_test/aosp_out
+AOSP_CCACHE_PATH=/mnt/nvme_test/ccache
+
+# Build Configuration
+BUILD_JOBS=64
+CCACHE_SIZE=100G
+JAVA_HEAP_SIZE=8G
+
+# Performance Tuning
+IO_SCHEDULER=none
+READ_AHEAD_KB=2048
+NR_REQUESTS=256
+
+# Example fstab entries:
+# UUID=xxx /mnt/nvme_test xfs noatime,nodiratime,discard 0 0
+# UUID=yyy /mnt/graid0_test xfs noatime,nodiratime 0 0
+# UUID=zzz /mnt/graid1_test xfs noatime,nodiratime 0 0
