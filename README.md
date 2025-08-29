@@ -145,6 +145,49 @@ chmod +x scripts/*.sh
 - Parallel build job optimization
 - ccache configuration on fastest storage
 
+## 📊 Real-time Performance Monitoring
+
+### Prometheus & Grafana Setup
+
+We use Prometheus and Grafana to monitor real-time I/O performance during AOSP compilation across different storage configurations.
+
+**Grafana Dashboard**: We use dashboard ID **11173** for comprehensive disk I/O monitoring.
+
+#### Key Metrics Monitored:
+- **Disk I/O Utilization** - Per-device read/write throughput
+- **IOPS** - Input/Output operations per second for each storage device
+- **I/O Queue Depth** - Outstanding I/O requests
+- **Latency Metrics** - Read/write response times
+- **CPU & Memory Usage** - System resource utilization during builds
+- **Per-Process I/O** - Track I/O usage by AOSP build processes
+
+#### Quick Setup:
+```bash
+# Install Prometheus node exporter
+wget https://github.com/prometheus/node_exporter/releases/latest/download/node_exporter-*.linux-amd64.tar.gz
+tar xvf node_exporter-*.tar.gz
+sudo cp node_exporter-*/node_exporter /usr/local/bin/
+
+# Start node exporter
+sudo systemctl start node_exporter
+
+# Import Grafana dashboard
+# In Grafana: Import → Dashboard ID: 11173
+```
+
+#### Dashboard Features:
+- Real-time disk throughput graphs
+- Historical performance comparison
+- Alert thresholds for I/O bottlenecks
+- Multi-disk comparison views
+- AOSP build phase correlation
+
+This monitoring setup helps identify:
+- Which storage device becomes the bottleneck during compilation
+- Peak I/O periods during AOSP builds
+- Performance differences between ext4 and XFS in real-time
+- Impact of noatime optimization on I/O patterns
+
 ## 📈 Benchmark Methodology
 
 Our testing uses industry-standard `fio` benchmarks with:
