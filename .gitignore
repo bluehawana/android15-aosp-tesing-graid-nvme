@@ -1,0 +1,109 @@
+# AOSP source and build directories (HUGE - DO NOT COMMIT!)
+aosp15/
+aosp15-*/
+android-*/
+out/
+prebuilts/
+external/
+frameworks/
+hardware/
+system/
+device/
+kernel/
+vendor/
+packages/
+build/
+bionic/
+art/
+bootable/
+dalvik/
+development/
+libcore/
+libnativehelper/
+pdk/
+platform_testing/
+sdk/
+test/
+tools/
+toolchain/
+
+# Build artifacts and logs
+*.log
+*.bin
+*.img
+*.zip
+*.tar.gz
+*.tar.xz
+build_output/
+logs/
+temp/
+tmp/
+build.log
+challenge_results.txt
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Test results and benchmarks
+results/
+benchmark_results/
+test_output/
+fio_results/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.env
+
+# Monitoring and metrics
+prometheus_data/
+grafana_data/
+metrics/
+
+# Large binary files
+*.iso
+*.dmg
+*.exe
+*.deb
+*.rpm
+
+# Backup files
+*.bak
+*.backup
+*.old
+backup/
+
+# Personal configuration
+personal_config/
+.personal/
+
+# Cache directories
+.cache/
+ccache/
+.ccache/
+
+# Repo tool metadata
+.repo/
+.repoconfig/
+
+# Keep important scripts and documentation
+!scripts/
+!manual/
+!config/
+!aosptesting/
+!*.sh
+!*.md
+!LICENSE
+!CHALLENGE.md
+!challenge_build.sh
